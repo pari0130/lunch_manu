@@ -1,14 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lunch_manu/fonts/FontFamily.dart';
-import 'package:lunch_manu/theme/color.dart';
+import 'package:lunch_manu/fonts/gmatket_font_family.dart';
 import 'package:lunch_manu/utils/data.dart';
 import 'package:lunch_manu/widgets/category_item.dart';
-import 'package:lunch_manu/widgets/custom_textbox.dart';
 import 'package:lunch_manu/widgets/feature_item.dart';
-import 'package:lunch_manu/widgets/notification_box.dart';
 import 'package:lunch_manu/widgets/popular_item.dart';
+import 'package:lunch_manu/fonts/fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -37,7 +35,7 @@ class _HomePageState extends State<HomePage> {
               //NotificationBox(number: 1,)
           ],),
         ),
-        body: getBody(),
+        body: SafeArea(child: getBody()),
       );
   }
 
@@ -47,13 +45,13 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20,),
+            SizedBox(height: 25,),
             Container(
               margin: EdgeInsets.only(left: 15, right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Popular", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: FontFamily.gmarketSansTTFMedium),),
+                  Text("Random Dice", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: FontFamily.gmarketSansTTFMedium),),
                 ],
               ),
             ),
@@ -63,13 +61,13 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 25,),
             Container(
-              margin: EdgeInsets.only(left: 0),
-              child: listCategories(),
+              margin: EdgeInsets.only(left: 15, right: 15),
+              child: Text("Tag's", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: FontFamily.gmarketSansTTFMedium),),
             ),
             SizedBox(height: 20,),
             Container(
-              margin: EdgeInsets.only(left: 15, right: 15),
-              child: Text("Featured", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: FontFamily.gmarketSansTTFMedium),),
+              margin: EdgeInsets.only(left: 0),
+              child: listCategories(),
             ),
             SizedBox(height: 10,),
             Container(

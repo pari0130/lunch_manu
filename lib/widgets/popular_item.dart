@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lunch_manu/fonts/FontFamily.dart';
+import 'package:lunch_manu/fonts/gmatket_font_family.dart';
 import 'package:lunch_manu/theme/color.dart';
 
 import 'favorite_box.dart';
