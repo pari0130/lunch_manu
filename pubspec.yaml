@@ -41,6 +41,7 @@ dependencies:
   badges: ^2.0.2
   google_fonts: ^2.1.1
   font_awesome_flutter: ^9.2.0
+  http:
 
 dev_dependencies:
   flutter_test:

@@ -1,1 +1,1 @@
-export 'kakao_documents_model.dart';
+export 'kakao_place_model.dart';
