@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lunch_manu/theme/color.dart';
-import 'package:lunch_manu/widgets/bottombar_item.dart';
+import 'package:lunch_manu/widgets/widgets.dart';
 import 'home.dart';
 import 'like.dart';
 

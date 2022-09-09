@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'pages/root.dart';
+import 'pages/pages.dart';
 import 'theme/color.dart';
 
 void main() {

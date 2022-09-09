@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lunch_manu/fonts/gmatket_font_family.dart';
 import 'package:lunch_manu/theme/color.dart';
 import 'package:lunch_manu/utils/data.dart';
-import 'package:lunch_manu/widgets/custom_textbox.dart';
-import 'package:lunch_manu/widgets/feature_item.dart';
+import 'package:lunch_manu/widgets/widgets.dart';
 
 class LikePage extends StatefulWidget {
   const LikePage({ Key? key }) : super(key: key);
@@ -63,7 +62,7 @@ class _LikePageState extends State<LikePage> {
     return
       Column(
         children: List.generate(featured.length, 
-          (index) => FeaturedItem(data: featured[index])
+          (index) => RandomItem(data: featured[index])
         ),
       );
   }

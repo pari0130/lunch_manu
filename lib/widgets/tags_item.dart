@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lunch_manu/theme/color.dart';
-import 'package:lunch_manu/widgets/custom_image.dart';
+import 'package:lunch_manu/widgets/widgets.dart';
 
 import 'favorite_box.dart';
 
-class FeaturedItem extends StatelessWidget {
-  const FeaturedItem({ Key? key, required this.data, this.onTap}) : super(key: key);
+class TagsItem extends StatelessWidget {
+  const TagsItem({ Key? key, required this.data, this.onTap}) : super(key: key);
   final data;
   final GestureTapCallback? onTap;
 

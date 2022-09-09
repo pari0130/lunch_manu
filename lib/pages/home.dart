@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lunch_manu/fonts/gmatket_font_family.dart';
 import 'package:lunch_manu/utils/data.dart';
-import 'package:lunch_manu/widgets/category_item.dart';
-import 'package:lunch_manu/widgets/feature_item.dart';
-import 'package:lunch_manu/widgets/popular_item.dart';
+import 'package:lunch_manu/widgets/widgets.dart';
 import 'package:lunch_manu/fonts/fonts.dart';
 
 class HomePage extends StatefulWidget {
@@ -57,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 5,),
             Container(
-              child: listPopulars(),
+              child: listRandom(),
             ),
             SizedBox(height: 25,),
             Container(
@@ -72,7 +70,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 10,),
             Container(
               margin: EdgeInsets.only(left: 15, right: 15),
-              child: listFeatured(),
+              child: listTags(),
             ),
             SizedBox(height: 20,),
           ],
@@ -99,24 +97,24 @@ class _HomePageState extends State<HomePage> {
       );
   }
 
-  listPopulars(){
+  listRandom(){
     return
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.only(left: 15),
         child: Row(
           children: List.generate(populars.length, 
-            (index) => PopularItem(data: populars[index])
+            (index) => RandomItem(data: populars[index])
           ),
         ),
       );
   }
 
-  listFeatured(){
+  listTags(){
     return
       Column(
         children: List.generate(featured.length, 
-          (index) => FeaturedItem(data: featured[index])
+          (index) => TagsItem(data: featured[index])
         ),
       );
   }

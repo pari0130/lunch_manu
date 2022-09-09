@@ -4,8 +4,8 @@ import 'package:lunch_manu/theme/color.dart';
 
 import 'favorite_box.dart';
 
-class PopularItem extends StatelessWidget {
-  PopularItem({ Key? key, required this.data }) : super(key: key);
+class RandomItem extends StatelessWidget {
+  RandomItem({ Key? key, required this.data }) : super(key: key);
   final data;
 
   @override
