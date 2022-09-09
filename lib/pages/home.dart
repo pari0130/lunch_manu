@@ -5,6 +5,8 @@ import 'package:lunch_manu/fonts/gmatket_font_family.dart';
 import 'package:lunch_manu/utils/data.dart';
 import 'package:lunch_manu/widgets/widgets.dart';
 import 'package:lunch_manu/fonts/fonts.dart';
+import 'package:lunch_manu/models/models.dart';
+import 'package:lunch_manu/api/apis.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -14,6 +16,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late List<NaverPlaceModel>? placeList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+  void _getData() async {
+    placeList = (await NaverPlaceApi.search(query: "음식점", searchCoord: "126.9336479;37.4734848"));
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+  }
+
   @override
   Widget build(BuildContext context) {
     return 
