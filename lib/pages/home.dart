@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lunch_manu/fonts/gmatket_font_family.dart';
@@ -26,7 +28,8 @@ class _HomePageState extends State<HomePage> {
 
   void _getData() async {
     placeList = (await NaverPlaceApi.search(query: "음식점", searchCoord: "126.9336479;37.4734848"));
-    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+    // log("---> ${placeList?[0].toString()}");
+    // Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
   }
 
   @override
