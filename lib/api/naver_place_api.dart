@@ -1,19 +1,19 @@
-import 'dart:developer';
-
 import 'package:logger/logger.dart';
 import 'package:lunch_manu/api/urls.dart';
 import 'package:lunch_manu/models/naver_place_model.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:lunch_manu/utils/utils.dart';
 
 class NaverPlaceApi {
   final logger = Logger();
 
-  Future<List<NaverPlaceModel>> search(
-      {required String query, required String searchCoord}) async {
-    final queryParameters = "query=$query&searchCoord=$searchCoord";
-    final uri = Uri.parse("${Urls.naverPlace}$queryParameters");
-    final response = await http.get(uri);
+  Future<List<NaverPlaceModel>> search({required String query}) async {
+    final location = await Location().getCurrentLocation();
+    final queryParameters = "query=$query&searchCoord=$location";
+    final url = "${Urls.naverPlace}$queryParameters";
+    final response = await http.get(Uri.parse(url));
+    var placeList = <NaverPlaceModel>[];
 
     if (response.statusCode == 200) {
       final body = jsonDecode(response.body);
@@ -24,9 +24,9 @@ class NaverPlaceApi {
           final list = place["list"] as List;
 
           logger.d(
-              "[API LOG] place -> { size : ${list.length}, data : ${list[0]} }");
+              "[API LOG] place -> { url : $url, size : ${list.length}, data : ${list} }");
 
-          return list.map((e) => NaverPlaceModel.fromJson(e)).toList();
+          placeList = list.map((e) => NaverPlaceModel.fromJson(e)).toList();
         } else {
           throw Exception('Failed to load list');
         }
@@ -36,5 +36,7 @@ class NaverPlaceApi {
     } else {
       throw Exception('Failed to load search');
     }
+
+    return placeList;
   }
 }

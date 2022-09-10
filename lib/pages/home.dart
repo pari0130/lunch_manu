@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:logger/logger.dart';
 import 'package:lunch_manu/fonts/gmatket_font_family.dart';
-import 'package:lunch_manu/utils/data.dart';
 import 'package:lunch_manu/widgets/widgets.dart';
 import 'package:lunch_manu/fonts/fonts.dart';
 import 'package:lunch_manu/models/models.dart';
 import 'package:lunch_manu/api/apis.dart';
-import 'package:lunch_manu/utils/location.dart';
+import 'package:lunch_manu/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -18,20 +17,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late List<NaverPlaceModel>? placeList = [];
+  late List<NaverPlaceModel> placeList = [];
   final logger = Logger();
 
   @override
   void initState() {
-    super.initState();
     _getData();
+    super.initState();
   }
 
   void _getData() async {
-    placeList = (await NaverPlaceApi().search(query: "음식점", searchCoord: "126.9336479;37.4734848"));
-    Location().getCurrentLocation();
-    // log("---> ${placeList?[0].toString()}");
-    // Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+    placeList = CommonUtils.shuffleAndTake(size: 5, list: (await NaverPlaceApi().search(query: "음식점"))).cast<NaverPlaceModel>();
+    // placeList?.forEach((element) { logger.d(element.name); });
   }
 
   @override
@@ -123,7 +120,7 @@ class _HomePageState extends State<HomePage> {
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.only(left: 15),
         child: Row(
-          children: List.generate(populars.length, 
+          children: List.generate(populars.length,
             (index) => RandomItem(data: populars[index])
           ),
         ),

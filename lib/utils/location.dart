@@ -8,7 +8,7 @@ class Location {
   double longitude = 0;
   final logger = Logger();
 
-  Future<String?> getCurrentLocation() async {
+  Future<String> getCurrentLocation() async {
     LocationPermission permission = await Geolocator.checkPermission();
     var latLong = "";
     if (permission == LocationPermission.denied) {
@@ -22,7 +22,7 @@ class Location {
 
       logger.d("[LOCATION] data -> { latitude : $latitude, longitude : $longitude }");
 
-      latLong = "$latitude,$longitude";
+      latLong = "$longitude;$latitude";
     } catch (e) {
       log(e.toString());
     }
