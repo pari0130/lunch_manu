@@ -18,7 +18,7 @@ class _RootAppState extends State<RootApp> {
     Icons.home_rounded, Icons.favorite
   ];
   List<Widget> pages = [
-    HomePage(), LikePage(),
+    const HomePage(), const LikePage(),
   ];
 
   @override

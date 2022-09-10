@@ -61,9 +61,9 @@ class _LikePageState extends State<LikePage> {
   listLikes(){
     return
       Column(
-        children: List.generate(featured.length, 
-          (index) => RandomItem(data: featured[index])
-        ),
+        // children: List.generate(featured.length,
+        //   (index) => RandomItem(data: featured[index])
+        // ),
       );
   }
 }

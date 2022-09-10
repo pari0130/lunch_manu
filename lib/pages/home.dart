@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late List<NaverPlaceModel> placeList = [];
+  late List<NaverPlaceModel> randomItemList = [];
   final logger = Logger();
 
   @override
@@ -27,8 +27,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _getData() async {
-    placeList = CommonUtils.shuffleAndTake(size: 5, list: (await NaverPlaceApi().search(query: "음식점"))).cast<NaverPlaceModel>();
-    // placeList?.forEach((element) { logger.d(element.name); });
+    randomItemList = CommonUtils.shuffleAndTake(size: 5, list: (await NaverPlaceApi().search(query: "음식점"))).cast<NaverPlaceModel>();
+    // randomItemList?.forEach((element) { logger.d(element.name); });
   }
 
   @override
@@ -120,8 +120,8 @@ class _HomePageState extends State<HomePage> {
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.only(left: 15),
         child: Row(
-          children: List.generate(populars.length,
-            (index) => RandomItem(data: populars[index])
+          children: List.generate(randomItemList.length,
+            (index) => RandomItem(data: randomItemList[index])
           ),
         ),
       );

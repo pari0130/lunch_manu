@@ -24,7 +24,7 @@ class NaverPlaceApi {
           final list = place["list"] as List;
 
           logger.d(
-              "[API LOG] place -> { url : $url, size : ${list.length}, data : ${list} }");
+              "[API LOG] place -> { url : $url, size : ${list.length}, data : ${list[0]} }");
 
           placeList = list.map((e) => NaverPlaceModel.fromJson(e)).toList();
         } else {

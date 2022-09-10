@@ -1,11 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lunch_manu/fonts/gmatket_font_family.dart';
 import 'package:lunch_manu/theme/color.dart';
+import 'package:lunch_manu/models/models.dart';
+import 'package:lunch_manu/assets/assets.dart';
 import 'favorite_box.dart';
 
 class RandomItem extends StatelessWidget {
   const RandomItem({Key? key, required this.data}) : super(key: key);
-  final data;
+  final NaverPlaceModel data;
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +25,18 @@ class RandomItem extends StatelessWidget {
               width: 220,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                image: DecorationImage(
-                    fit: BoxFit.cover, image: NetworkImage(data["image"])),
               ),
+              child: (data.thumUrl != null && data.thumUrl!.isNotEmpty)
+                ? CachedNetworkImage(imageUrl: data.thumUrl!, fit: BoxFit.cover,)
+                : Container(decoration: const BoxDecoration(image : DecorationImage(image: CustomImage.emptyThum02, fit: BoxFit.cover,)))
             ),
           ),
           Positioned(
               top: 0,
               right: 5,
               child: FavoriteBox(
-                isFavorited: data["is_favorited"],
+                // isFavorited: data["is_favorited"],
+                isFavorited: true,
               )),
           Positioned(
             top: 140,
@@ -43,7 +48,7 @@ class RandomItem extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                          child: Text(data["name"],
+                          child: Text(data.name??"",
                               style: const TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
