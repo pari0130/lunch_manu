@@ -41,6 +41,7 @@ dependencies:
   http:
   flutter_dotenv:
   geolocator:
+  logger:
 
 dev_dependencies:
   flutter_test:
