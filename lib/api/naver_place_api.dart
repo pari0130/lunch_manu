@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:lunch_manu/api/urls.dart';
 import 'package:lunch_manu/models/naver_place_model.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class NaverPlaceApi {
-  static Future<List<NaverPlaceModel>> search(
+  Future<List<NaverPlaceModel>> search(
       {required String query, required String searchCoord}) async {
 
     final queryParameters = "query=$query&searchCoord=$searchCoord";
@@ -13,6 +15,7 @@ class NaverPlaceApi {
 
     if (response.statusCode == 200) {
       final body = jsonDecode(response.body);
+      log(response.body);
       if (body["result"] != null && (body["result"] as Map<String, dynamic>)["place"] != null) {
         final place = (body["result"] as Map<String, dynamic>)["place"];
         if (place["list"] != null) {

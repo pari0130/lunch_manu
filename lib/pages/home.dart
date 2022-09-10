@@ -1,6 +1,4 @@
 
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lunch_manu/fonts/gmatket_font_family.dart';
@@ -9,6 +7,7 @@ import 'package:lunch_manu/widgets/widgets.dart';
 import 'package:lunch_manu/fonts/fonts.dart';
 import 'package:lunch_manu/models/models.dart';
 import 'package:lunch_manu/api/apis.dart';
+import 'package:lunch_manu/utils/location.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -27,7 +26,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _getData() async {
-    placeList = (await NaverPlaceApi.search(query: "음식점", searchCoord: "126.9336479;37.4734848"));
+    placeList = (await NaverPlaceApi().search(query: "음식점", searchCoord: "126.9336479;37.4734848"));
+    Location().getCurrentLocation();
     // log("---> ${placeList?[0].toString()}");
     // Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
   }
