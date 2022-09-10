@@ -43,8 +43,8 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(left: 15, right: 15),
-                  child: const Text("Hello Sangvaleap!", style: TextStyle(color: Colors.black,fontSize: 15, fontWeight: FontWeight.w600, fontFamily: FontFamily.gmarketSansTTFBold),),
+                  margin: EdgeInsets.only(left: 0, right: 15),
+                  child: const Text("EAT!!", style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.w600, fontFamily: FontFamily.gmarketSansTTFBold),),
                 ),
               ),
               //NotificationBox(number: 1,)
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Random Dice", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: FontFamily.gmarketSansTTFMedium),),
+                  Text("무작위 음식점은 어때요?", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: FontFamily.gmarketSansTTFMedium),),
                 ],
               ),
             ),
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 25,),
             Container(
               margin: EdgeInsets.only(left: 15, right: 15),
-              child: Text("Tag's", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: FontFamily.gmarketSansTTFMedium),),
+              child: Text("Tag 음식점은 어때요?", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: FontFamily.gmarketSansTTFMedium),),
             ),
             SizedBox(height: 20,),
             Container(

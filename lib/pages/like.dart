@@ -25,8 +25,8 @@ class _LikePageState extends State<LikePage> {
             children: [
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(left: 15, right: 15),
-                  child: const Text("Hello Sangvaleap!", style: TextStyle(color: Colors.black,fontSize: 15, fontWeight: FontWeight.w600, fontFamily: FontFamily.gmarketSansTTFBold),),
+                  margin: EdgeInsets.only(left: 0, right: 15),
+                  child: const Text("EAT!!", style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.w600, fontFamily: FontFamily.gmarketSansTTFBold),),
                 ),
               ),
               //NotificationBox(number: 1,)
