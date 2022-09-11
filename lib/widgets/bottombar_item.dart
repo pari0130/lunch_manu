@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lunch_manu/theme/color.dart';
 
 class BottomBarItem extends StatelessWidget {
-  const BottomBarItem(this.icon, this.title, {this.onTap, this.color = inActiveColor, this.activeColor = primary, this.isActive = false, this.isNotified = false});
+  const BottomBarItem(this.icon, this.title, {super.key, this.onTap, this.color = inActiveColor, this.activeColor = primary, this.isActive = false, this.isNotified = false});
   final IconData icon;
   final String title;
   final Color color;
@@ -20,24 +20,24 @@ class BottomBarItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           isNotified ?
-          new Stack(
+          Stack(
             children: <Widget>[
-              new Icon(icon, size: 26, color: isActive ? activeColor : color,),
-              new Positioned( 
+              Icon(icon, size: 26, color: isActive ? activeColor : color,),
+              const Positioned(
                 top: 5.0,
                 right: 0,
                 left: 8.0,
                 child: 
                   Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: new Icon(Icons.brightness_1, size: 10.0, color: Colors.red),
+                    padding: EdgeInsets.only(left: 20),
+                    child: Icon(Icons.brightness_1, size: 10.0, color: Colors.red),
                   ),
               )
             ]
           ) 
           :
           Container(
-            padding: EdgeInsets.all(7),
+            padding: const EdgeInsets.all(7),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: isActive ? Colors.white.withOpacity(.15) : Colors.transparent,

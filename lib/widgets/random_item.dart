@@ -23,12 +23,19 @@ class RandomItem extends StatelessWidget {
             child: Container(
               height: 120,
               width: 220,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: (data.thumUrl != null && data.thumUrl!.isNotEmpty)
-                ? CachedNetworkImage(imageUrl: data.thumUrl!, fit: BoxFit.cover,)
-                : Container(decoration: const BoxDecoration(image : DecorationImage(image: CustomImage.emptyThum02, fit: BoxFit.cover,)))
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: (data.thumUrl != null && data.thumUrl!.isNotEmpty)
+                      ? CachedNetworkImage(
+                          imageUrl: data.thumUrl!,
+                          fit: BoxFit.cover,
+                        )
+                      : Container(
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                          image: CustomImage.emptyThum02,
+                          fit: BoxFit.cover,
+                        )))),
             ),
           ),
           Positioned(
@@ -48,7 +55,7 @@ class RandomItem extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                          child: Text(data.name??"",
+                          child: Text(data.name ?? "",
                               style: const TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,

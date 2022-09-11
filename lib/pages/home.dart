@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(left: 0, right: 15),
+                  margin: const EdgeInsets.only(left: 0, right: 15),
                   child: const Text("EAT!!", style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.w600, fontFamily: FontFamily.gmarketSansTTFBold),),
                 ),
               ),
@@ -60,36 +60,36 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 25,),
+            const SizedBox(height: 25,),
             Container(
-              margin: EdgeInsets.only(left: 15, right: 15),
+              margin: const EdgeInsets.only(left: 15, right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   Text("무작위 음식점은 어때요?", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: FontFamily.gmarketSansTTFMedium),),
                 ],
               ),
             ),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Container(
               child: listRandom(),
             ),
-            SizedBox(height: 25,),
+            const SizedBox(height: 25,),
             Container(
-              margin: EdgeInsets.only(left: 15, right: 15),
-              child: Text("Tag 음식점은 어때요?", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: FontFamily.gmarketSansTTFMedium),),
+              margin: const EdgeInsets.only(left: 15, right: 15),
+              child: const Text("Tag 음식점은 어때요?", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: FontFamily.gmarketSansTTFMedium),),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Container(
-              margin: EdgeInsets.only(left: 0),
+              margin: const EdgeInsets.only(left: 0),
               child: listCategories(),
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Container(
-              margin: EdgeInsets.only(left: 15, right: 15),
+              margin: const EdgeInsets.only(left: 15, right: 15),
               child: listTags(),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
           ],
         ),
       );
@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
   listCategories(){
     List<Widget> lists = List.generate(categories.length, (index) => CategoryItem(data: categories[index]));
     lists.insert(0, CategoryItem(
-      data: {
+      data: const {
         "name" : "All",
         "icon" : FontAwesomeIcons.th,
       }, 
@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
     return
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.only(bottom: 5, left: 15),
+        padding: const EdgeInsets.only(bottom: 5, left: 15),
         child: Row(
           children: lists
         ),
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
     return
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.only(left: 15),
+        padding: const EdgeInsets.only(left: 15),
         child: Row(
           children: List.generate(randomItemList.length,
             (index) => RandomItem(data: randomItemList[index])

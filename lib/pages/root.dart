@@ -43,7 +43,7 @@ class _RootAppState extends State<RootApp> {
           width: 0.5,
           color: Colors.black12
         ),
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(5),
           topRight: Radius.circular(5)
         ), 
