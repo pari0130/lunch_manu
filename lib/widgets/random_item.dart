@@ -20,7 +20,7 @@ class RandomItem extends StatelessWidget {
         children: [
           Positioned(
             top: 10,
-            child: Container(
+            child: SizedBox(
               height: 120,
               width: 220,
               child: ClipRRect(
@@ -33,7 +33,7 @@ class RandomItem extends StatelessWidget {
                       : Container(
                           decoration: const BoxDecoration(
                               image: DecorationImage(
-                          image: CustomImage.emptyThum02,
+                          image: emptyThum02,
                           fit: BoxFit.cover,
                         )))),
             ),
@@ -59,18 +59,18 @@ class RandomItem extends StatelessWidget {
                               style: const TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
-                                  fontFamily: FontFamily.gmarketSansTTFMedium),
+                                  fontFamily: gmarketSansTTFMedium),
                               maxLines: 1)),
                       const SizedBox(
                         width: 5,
                       ),
-                      const Text(
-                        "지도",
-                        style: TextStyle(
+                      Text(
+                        "${double.parse(data.distance??"0.0").round()}m",
+                        style: const TextStyle(
                             fontSize: 13,
                             color: primary,
                             fontWeight: FontWeight.w600,
-                            fontFamily: FontFamily.gmarketSansTTFMedium),
+                            fontFamily: gmarketSansTTFMedium),
                       ),
                     ],
                   ),

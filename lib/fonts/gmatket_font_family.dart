@@ -1,5 +1,3 @@
-class FontFamily {
-  static const gmarketSansTTFBold = "GmarketSansTTFBold";
-  static const gmarketSansTTFLight = "GmarketSansTTFLight";
-  static const gmarketSansTTFMedium = "GmarketSansTTFMedium";
-}
+const gmarketSansTTFBold = "GmarketSansTTFBold";
+const gmarketSansTTFLight = "GmarketSansTTFLight";
+const gmarketSansTTFMedium = "GmarketSansTTFMedium";

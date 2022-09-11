@@ -46,17 +46,18 @@ class TagsItem extends StatelessWidget {
                   Text(data["sources"], maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 12, color: Colors.grey)),
                   SizedBox(height: 4,),
                   Row(children: [
-                    Icon(Icons.star_rounded, size: 14, color: primary,),
-                    SizedBox(width: 2,),
-                    Text(data["rate"] + " (" + data["rate_number"] + ")", style: TextStyle(fontSize: 12, color: primary)),
+                    //Icon(Icons.star_rounded, size: 14, color: primary,),
+                    //SizedBox(width: 2,),
+                    //Text(data["rate"] + " (" + data["rate_number"] + ")", style: TextStyle(fontSize: 12, color: primary)),
+                    Text("999m", style: TextStyle(fontSize: 12, color: primary)),
                   ],)
                 ],
               ),
             ),
             Column(
               children: <Widget>[
-                Text(data["price"],  maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: primary)),
-                SizedBox(height: 10,),
+                //Text(data["price"],  maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: primary)),
+                //SizedBox(height: 10,),
                 FavoriteBox(iconSize: 13, isFavorited: data["is_favorited"],)
               ],
             ),
