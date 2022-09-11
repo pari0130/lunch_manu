@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:logger/logger.dart';
 import 'package:lunch_manu/fonts/gmatket_font_family.dart';
+import 'package:lunch_manu/theme/color.dart';
 import 'package:lunch_manu/widgets/widgets.dart';
 import 'package:lunch_manu/fonts/fonts.dart';
 import 'package:lunch_manu/models/models.dart';
@@ -21,21 +22,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late List<NaverPlaceModel> randomItemList = [];
+  // late List<NaverPlaceModel> randomItemList = [];
   final logger = Logger();
-  final LoadingStatus status = Get.put(LoadingStatus());
+  final LoadingStatus loadingStatus = Get.put(LoadingStatus());
+  final TagsPlaceStatus tagsStatus = Get.put(TagsPlaceStatus());
+  final RandomPlaceStatus randomStatus = Get.put(RandomPlaceStatus());
 
   @override
   void initState() {
-    _getData();
+    getData();
+    CacheUtil.saveJsonFile();
     super.initState();
   }
 
-  void _getData() async {
-    status.updateMainLoading(true);
-    randomItemList = CommonUtils.shuffleAndTake(size: 5, list: (await NaverPlaceApi().search(query: "음식점"))).cast<NaverPlaceModel>();
-    // randomItemList?.forEach((element) { logger.d(element.name); });
-    status.updateMainLoading(false);
+  Future getData() async {
+    randomStatus.updateItem();
+    tagsStatus.updateTag(tagsStatus.selectedTag.value);
   }
 
   @override
@@ -51,12 +53,19 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.only(left: 0, right: 15),
-                  child: const Text("EAT!!", style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.w600, fontFamily: gmarketSansTTFBold),),
+                  child: const Text("FOOD DICE", style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.w600, fontFamily: gmarketSansTTFBold),),
                 ),
               ),
           ],),
         ),
-        body: SafeArea(child: getBody()),
+        body: SafeArea(
+          child: RefreshIndicator(
+            onRefresh: () => getData(),
+            color: primary,
+            child: getBody(),
+          ),
+        )
+        // body: SafeArea(child: getBody()),
       );
   }
 
@@ -78,8 +87,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 5,),
             Container(
-              child: Obx(() => status.isMainLoading.isTrue ? CustomLoading() : listRandom()),
-              // CustomLoading(),
+              child: Obx(() => loadingStatus.isMainLoading.value ? const CustomLoading() : listRandom()),
             ),
             const SizedBox(height: 25,),
             Container(
@@ -94,7 +102,8 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 10,),
             Container(
               margin: const EdgeInsets.only(left: 15, right: 15),
-              child: listTags(),
+              child: Obx(() => loadingStatus.isTagLoading.value ? const CustomLoading() : listTags()),
+              //child: listTags(),
             ),
             const SizedBox(height: 20,),
           ],
@@ -104,13 +113,13 @@ class _HomePageState extends State<HomePage> {
 
   listCategories(){
     List<Widget> lists = List.generate(categories.length, (index) => CategoryItem(data: categories[index]));
-    lists.insert(0, CategoryItem(
+    /*lists.insert(0, CategoryItem(
       data: const {
         "name" : "All",
         "icon" : FontAwesomeIcons.th,
       }, 
       seleted: true,)
-    );
+    );*/
     return
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -127,19 +136,20 @@ class _HomePageState extends State<HomePage> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.only(left: 15),
         child: Row(
-          children: List.generate(randomItemList.length,
-            (index) => RandomItem(data: randomItemList[index])
+          children: List.generate(randomStatus.randomItemList.length,
+            (index) => RandomItem(data: randomStatus.randomItemList[index])
           ),
         ),
       );
   }
 
-  listTags(){
+  listTags() {
     return
-      Column(
-        children: List.generate(featured.length, 
-          (index) => TagsItem(data: featured[index])
-        ),
-      );
+    Obx(
+      () => Column(
+        children: List.generate(
+            tagsStatus.tagItemList.length, (index) => TagsItem(data: tagsStatus.tagItemList[index])),
+      ),
+    );
   }
 }

@@ -7,7 +7,7 @@ class NaverPlaceModel {
   String? address;
   String? roadAddress;
   String? abbrAddress;
-  List<String>? shortAddress;
+  // List<String>? shortAddress;
   String? display;
   String? telDisplay;
   List<String>? context;
@@ -44,7 +44,7 @@ class NaverPlaceModel {
         this.address,
         this.roadAddress,
         this.abbrAddress,
-        this.shortAddress,
+        // this.shortAddress,
         this.display,
         this.telDisplay,
         this.context,
@@ -81,7 +81,7 @@ class NaverPlaceModel {
     address = json['address'];
     roadAddress = json['roadAddress'];
     abbrAddress = json['abbrAddress'];
-    shortAddress = json['shortAddress'].cast<String>();
+    // shortAddress = json['shortAddress'] != null ? json['shortAddress'].cast<String>() : "";
     display = json['display'];
     telDisplay = json['telDisplay'];
     context = json['context'].cast<String>();
@@ -124,7 +124,7 @@ class NaverPlaceModel {
     data['address'] = this.address;
     data['roadAddress'] = this.roadAddress;
     data['abbrAddress'] = this.abbrAddress;
-    data['shortAddress'] = this.shortAddress;
+    // data['shortAddress'] = this.shortAddress;
     data['display'] = this.display;
     data['telDisplay'] = this.telDisplay;
     data['context'] = this.context;

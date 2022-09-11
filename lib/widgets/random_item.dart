@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:lunch_manu/fonts/gmatket_font_family.dart';
+import 'package:lunch_manu/fonts/fonts.dart';
 import 'package:lunch_manu/theme/color.dart';
 import 'package:lunch_manu/models/models.dart';
 import 'package:lunch_manu/assets/assets.dart';
@@ -32,10 +32,13 @@ class RandomItem extends StatelessWidget {
                         )
                       : Container(
                           decoration: const BoxDecoration(
-                              image: DecorationImage(
-                          image: emptyThum02,
-                          fit: BoxFit.cover,
-                        )))),
+                            image: DecorationImage(
+                              image: emptyThum02,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+              ),
             ),
           ),
           Positioned(

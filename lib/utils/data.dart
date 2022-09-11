@@ -53,24 +53,24 @@ List populars = [
 
 List categories = [
   {
-    "name" : "Salad",
-    "icon" : FontAwesomeIcons.cloudMeatball
+    "name" : "한식",
+    "icon" : Icons.rice_bowl
   },
   {
-    "name" : "Burger",
+    "name" : "양식",
     "icon" :  FontAwesomeIcons.hamburger
   },
   {
-    "name" : "Drink",
-    "icon" : FontAwesomeIcons.wineGlass
+    "name" : "중식",
+    "icon" : Icons.ramen_dining
   },
   {
-    "name" : "Soup",
-    "icon" :  Icons.rice_bowl
-  },
-  {
-    "name" : "Snack",
+    "name" : "분식",
     "icon" : FontAwesomeIcons.cookie
+  },
+  {
+    "name" : "카페",
+    "icon" : FontAwesomeIcons.coffee
   },
 ];
 
@@ -79,9 +79,9 @@ const List featured = [
     "image": "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
     "is_favorited": true,
     "price": "\$18.75",
-    "name": "Mix Pizza",
+    "name": "생생조개",
     "description": "Breakfast and Brunch - American - Sandwich",
-    "sources": "Egg - Salad",
+    "sources": "무한리필 안시켜도 양 많은",
     "delivery_fee": "\$1.49 Delivery Fee",
     "rate": "4.3",
     "rate_number": "273"
@@ -90,9 +90,9 @@ const List featured = [
     "image":"https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
     "price" : "\$12.50",
     "is_favorited": false,
-    "name": "Greeny Salad",
+    "name": "와인어클락 신림점",
     "description": "Breakfast and Brunch - American - Sandwich",
-    "sources": "Egg - Salad",
+    "sources": "무한리필 안시켜도 양 많은",
     "delivery_fee": "\$1.49 Delivery Fee",
     "rate": "4.8",
     "rate_number": "273"
@@ -100,10 +100,10 @@ const List featured = [
   {
     "image": "https://images.unsplash.com/photo-1511909525232-61113c912358?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
     "is_favorited": false,
-    "name": "Greeny Salad",
+    "name": "칵테일앤드림",
     "price" : "\$15.25",
     "description": "Breakfast and Brunch - American - Sandwich",
-    "sources": "Egg - Salad",
+    "sources": "무한리필 안시켜도 양 많은",
     "delivery_fee": "\$1.49 Delivery Fee",
     "rate": "4.3",
     "rate_number": "273"
@@ -111,9 +111,9 @@ const List featured = [
   {
     "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
     "price": "\$5.50",
-    "name": "Greeny Salad",
+    "name": "미남참치 신림점",
     "description": "Breakfast and Brunch - American - Sandwich",
-    "sources": "Egg - Salad",
+    "sources": "무한리필 안시켜도 양 많은",
     "is_favorited": true,
     "delivery_fee": "\$1.49 Delivery Fee",
     "rate": "4.5",

@@ -10,7 +10,7 @@ class NaverPlaceApi {
 
   Future<List<NaverPlaceModel>> search({required String query}) async {
     final location = await Location().getCurrentLocation();
-    final queryParameters = "query=$query&searchCoord=$location";
+    final queryParameters = "query=$query&searchCoord=126.9304393;37.4806604";
     final url = "${Urls.naverPlace}$queryParameters";
     final response = await http.get(Uri.parse(url));
     var placeList = <NaverPlaceModel>[];

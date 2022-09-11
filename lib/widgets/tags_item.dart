@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lunch_manu/theme/color.dart';
 import 'package:lunch_manu/widgets/widgets.dart';
-
+import 'package:lunch_manu/models/models.dart';
 import 'favorite_box.dart';
+import 'package:lunch_manu/utils/utils.dart';
+import 'package:lunch_manu/fonts/fonts.dart';
 
 class TagsItem extends StatelessWidget {
-  const TagsItem({ Key? key, required this.data, this.onTap}) : super(key: key);
-  final data;
+  const TagsItem({Key? key, required this.data, this.onTap}) : super(key: key);
+  final NaverPlaceModel data;
   final GestureTapCallback? onTap;
 
   @override
@@ -32,8 +34,9 @@ class TagsItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomImage(
-              data["image"], 
-              width: 60, height:60,
+              data.thumUrl ?? "",
+              width: 60,
+              height: 60,
               radius: 10,
             ),
             SizedBox(width: 15),
@@ -41,16 +44,42 @@ class TagsItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(data["name"],  maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-                  SizedBox(height: 3,),
-                  Text(data["sources"], maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 12, color: Colors.grey)),
-                  SizedBox(height: 4,),
-                  Row(children: [
-                    //Icon(Icons.star_rounded, size: 14, color: primary,),
-                    //SizedBox(width: 2,),
-                    //Text(data["rate"] + " (" + data["rate_number"] + ")", style: TextStyle(fontSize: 12, color: primary)),
-                    Text("999m", style: TextStyle(fontSize: 12, color: primary)),
-                  ],)
+                  Text(data.name ?? "",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: gmarketSansTTFMedium)),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  Text(
+                      data.microReview != null
+                          ? CommonUtils.getFirstFromList(
+                              list: data.microReview!)
+                          : "",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                          fontFamily: gmarketSansTTFMedium)),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Row(
+                    children: [
+                      //Icon(Icons.star_rounded, size: 14, color: primary,),
+                      //SizedBox(width: 2,),
+                      //Text(data["rate"] + " (" + data["rate_number"] + ")", style: TextStyle(fontSize: 12, color: primary)),
+                      Text("${double.parse(data.distance ?? "0.0").round()}m",
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: primary,
+                              fontFamily: gmarketSansTTFMedium)),
+                    ],
+                  )
                 ],
               ),
             ),
@@ -58,7 +87,11 @@ class TagsItem extends StatelessWidget {
               children: <Widget>[
                 //Text(data["price"],  maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: primary)),
                 //SizedBox(height: 10,),
-                FavoriteBox(iconSize: 13, isFavorited: data["is_favorited"],)
+                // FavoriteBox(iconSize: 13, isFavorited: data["is_favorited"],)
+                FavoriteBox(
+                  iconSize: 13,
+                  isFavorited: true,
+                )
               ],
             ),
           ],

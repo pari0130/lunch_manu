@@ -20,5 +20,6 @@ const red = Color(0xFFFF968A);
 const orange = Color(0xFFFFC8A2);
 const sky = Color(0xFFABDEE6);
 const blue = Color(0xFF509BE4);
+const blue2 = Color(0xFF0B1CF3);
 
 const listColors = [green, primary, pink, red, yellow, orange, sky, blue, purple, yellow,];

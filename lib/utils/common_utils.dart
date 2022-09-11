@@ -4,4 +4,11 @@ class CommonUtils {
     list.shuffle();
     return list.take(size).toList();
   }
+
+  static String getFirstFromList({required List list}) {
+    if (list.isNotEmpty) {
+      return list[0];
+    }
+    return "";
+  }
 }
