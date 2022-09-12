@@ -7,9 +7,12 @@ import 'package:lunch_manu/utils/utils.dart';
 import 'package:lunch_manu/fonts/fonts.dart';
 
 class TagsItem extends StatelessWidget {
-  const TagsItem({Key? key, required this.data, this.onTap}) : super(key: key);
+  const TagsItem(
+      {Key? key, required this.data, this.onTap, required this.latLong})
+      : super(key: key);
   final NaverPlaceModel data;
   final GestureTapCallback? onTap;
+  final String latLong;
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +59,7 @@ class TagsItem extends StatelessWidget {
                   ),
                   Text(
                       data.microReview != null
-                          ? ListUtil.getFirstFromList(
-                              list: data.microReview!)
+                          ? ListUtil.getFirstFromList(list: data.microReview!)
                           : "",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -73,7 +75,9 @@ class TagsItem extends StatelessWidget {
                       //Icon(Icons.star_rounded, size: 14, color: primary,),
                       //SizedBox(width: 2,),
                       //Text(data["rate"] + " (" + data["rate_number"] + ")", style: TextStyle(fontSize: 12, color: primary)),
-                      Text("${double.parse(data.distance ?? "0.0").round()}m",
+                      Text(
+                          "${Location.getDistance(latLong, "${data.x};${data.y}").round()}m",
+                          // "${double.parse(data.distance ?? "0.0").round()}m",
                           style: TextStyle(
                               fontSize: 12,
                               color: primary,
@@ -89,7 +93,7 @@ class TagsItem extends StatelessWidget {
                 //SizedBox(height: 10,),
                 // FavoriteBox(iconSize: 13, isFavorited: data["is_favorited"],)
                 FavoriteBox(
-                  data : data,
+                  data: data,
                   iconSize: 13,
                   isFavorited: true,
                 )

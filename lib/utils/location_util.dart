@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:logger/logger.dart';
 
 class Location {
@@ -28,5 +29,20 @@ class Location {
       log(e.toString());
     }
     return latLong;
+  }
+
+  static num getDistance(String fromLatLong, String toLatLong) {
+    var distance = const Distance();
+    var fromLong = fromLatLong.split(";")[0];
+    var fromLat = fromLatLong.split(";")[1];
+    var toLong = toLatLong.split(";")[0];
+    var toLat = toLatLong.split(";")[1];
+
+    final meter = distance(
+        LatLng(double.parse(fromLat.toString()),double.parse(fromLong.toString())),
+        LatLng(double.parse(toLat.toString()),double.parse(toLong.toString()))
+    );
+
+    return meter;
   }
 }

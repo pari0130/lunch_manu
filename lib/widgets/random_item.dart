@@ -5,10 +5,12 @@ import 'package:lunch_manu/theme/color.dart';
 import 'package:lunch_manu/models/models.dart';
 import 'package:lunch_manu/assets/assets.dart';
 import 'favorite_box.dart';
+import 'package:lunch_manu/utils/utils.dart';
 
 class RandomItem extends StatelessWidget {
-  const RandomItem({Key? key, required this.data}) : super(key: key);
+  RandomItem({Key? key, required this.data, required this.latLong}) : super(key: key);
   final NaverPlaceModel data;
+  final String latLong;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +71,7 @@ class RandomItem extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        "${double.parse(data.distance??"0.0").round()}m",
+                        "${Location.getDistance(latLong, "${data.x};${data.y}").round()}m",
                         style: const TextStyle(
                             fontSize: 13,
                             color: primary,

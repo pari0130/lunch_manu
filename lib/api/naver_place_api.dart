@@ -1,15 +1,19 @@
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:logger/logger.dart';
 import 'package:lunch_manu/api/urls.dart';
 import 'package:lunch_manu/models/naver_place_model.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:lunch_manu/utils/utils.dart';
+import 'package:lunch_manu/status/status.dart';
 
 class NaverPlaceApi {
   final logger = Logger();
 
   Future<List<NaverPlaceModel>> search({required String query}) async {
-    final location = await Location().getCurrentLocation();
+    final LocationStatus locationStatus = Get.put(LocationStatus());
+    final location = locationStatus.currentLocation.value;
     // final location = "126.9304383;37.4806604";
     final queryParameters = "query=$query&searchCoord=$location";
     final url = "${Urls.naverPlace}$queryParameters";

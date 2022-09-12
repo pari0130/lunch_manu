@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   final LoadingStatus loadingStatus = Get.put(LoadingStatus());
   final TagsPlaceStatus tagsStatus = Get.put(TagsPlaceStatus());
   final RandomPlaceStatus randomStatus = Get.put(RandomPlaceStatus());
+  final LocationStatus locationStatus = Get.put(LocationStatus());
 
   @override
   void initState() {
@@ -33,8 +34,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future getData() async {
-    randomStatus.updateItem();
-    tagsStatus.updateTag(tagsStatus.selectedTag.value);
+    await locationStatus.updateLocation(null);
+    await randomStatus.updateItem();
+    await tagsStatus.updateTag(tagsStatus.selectedTag.value);
   }
 
   @override
@@ -50,7 +52,16 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.only(left: 0, right: 15),
-                  child: const Text("FOOD DICE", style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.w600, fontFamily: gmarketSansTTFBold),),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      Text("FOOD DICE", style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.w600, fontFamily: gmarketSansTTFBold),),
+                      SizedBox(width: 5,),
+                      Text("(beta)", style: TextStyle(color: Colors.black,fontSize: 15, fontWeight: FontWeight.w600, fontFamily: gmarketSansTTFLight),),
+                    ],
+                  )
+                  // child: const Text("FOOD DICE", style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.w600, fontFamily: gmarketSansTTFBold),),
                 ),
               ),
           ],),
@@ -134,7 +145,7 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.only(left: 15),
         child: Row(
           children: List.generate(randomStatus.randomItemList.length,
-            (index) => RandomItem(data: randomStatus.randomItemList[index])
+            (index) => RandomItem(data: randomStatus.randomItemList[index], latLong: locationStatus.currentLocation.value,)
           ),
         ),
       );
@@ -145,7 +156,7 @@ class _HomePageState extends State<HomePage> {
     Obx(
       () => Column(
         children: List.generate(
-            tagsStatus.tagItemList.length, (index) => TagsItem(data: tagsStatus.tagItemList[index])),
+            tagsStatus.tagItemList.length, (index) => TagsItem(data: tagsStatus.tagItemList[index], latLong: locationStatus.currentLocation.value,)),
       ),
     );
   }

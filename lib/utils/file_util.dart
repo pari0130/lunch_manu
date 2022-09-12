@@ -13,6 +13,7 @@ class FileUtil {
   static void saveFromApiRes(List resList, String query, String latLong) async {
     var data = {
       'expired': DateUtil.getNowMillisecondsByAdd(10),
+      'currentLatLong': latLong,
       'query': query,
       'data': resList
     };
@@ -35,7 +36,7 @@ class FileUtil {
     String? fileString = "";
 
     if (kIsWeb) {
-      fileString = WebStorageUtil.readWebStorage(query, latLong);
+      fileString = WebStorageUtil.readWebStorage(path);
     } else {
       // file 위치에 저장된 데이터가 없을 경우 catch error
       try {
@@ -64,9 +65,10 @@ class FileUtil {
   /// like 목록 조회
   static Future<List> readLikeList(String query, String latLong) async {
     String? fileString = "";
+    var path = _parseFileNameFromLatLong(query, latLong);
 
     if (kIsWeb) {
-      fileString = WebStorageUtil.readWebStorage(query, latLong);
+      fileString = WebStorageUtil.readWebStorage(path);
     } else {
       // file 위치에 저장된 데이터가 없을 경우 catch error
       try {
@@ -128,8 +130,8 @@ class FileUtil {
   static String _parseFileNameFromLatLong(String query, String latLong) {
     var long = latLong.split(";")[0];
     var lat = latLong.split(";")[1];
-    long = long.substring(0, long.indexOf(".") + 4);
-    lat = lat.substring(0, lat.indexOf(".") + 4);
+    long = num.parse(long.substring(0, long.indexOf(".") + 5)).toStringAsFixed(3);
+    lat = num.parse(lat.substring(0, lat.indexOf(".") + 5)).toStringAsFixed(3);
     return '$long;$lat;$query.json';
   }
 
