@@ -10,7 +10,7 @@ class FileUtil {
   static final logger = Logger();
   static const version = "v1";
   static const postFix = "_$version.json";
-  static const likesPath = "likes_$postFix";
+  static const likesPath = "likes$postFix";
 
   /// 위도/경도에 해당하는 json 파일 저장 (126.926;37.473;음식점.json)
   static void saveFromApiRes(List resList, String query, String latLong) async {
