@@ -21,6 +21,7 @@ class Location {
       longitude = position.longitude;
 
       logger.d("[LOCATION] data -> { latitude : $latitude, longitude : $longitude }");
+      // [LOCATION] data -> { latitude : 37.4734848, longitude : 126.926848 }
 
       latLong = "$longitude;$latitude";
     } catch (e) {

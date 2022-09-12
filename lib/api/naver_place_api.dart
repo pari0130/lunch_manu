@@ -10,31 +10,40 @@ class NaverPlaceApi {
 
   Future<List<NaverPlaceModel>> search({required String query}) async {
     final location = await Location().getCurrentLocation();
+    // final location = "126.9304383;37.4806604";
     final queryParameters = "query=$query&searchCoord=$location";
     final url = "${Urls.naverPlace}$queryParameters";
     final response = await http.get(Uri.parse(url));
     var placeList = <NaverPlaceModel>[];
 
-    if (response.statusCode == 200) {
-      final body = jsonDecode(response.body);
-      if (body["result"] != null &&
-          (body["result"] as Map<String, dynamic>)["place"] != null) {
-        final place = (body["result"] as Map<String, dynamic>)["place"];
-        if (place["list"] != null) {
-          final list = place["list"] as List;
+    final cachedData = await FileUtil.readApiRes(query, location);
 
-          logger.d(
-              "[API LOG] place -> { url : $url, size : ${list.length}, data : ${list[0]} }");
+    if (cachedData.isNotEmpty) {
+      placeList = cachedData.map((e) => NaverPlaceModel.fromJson(e)).toList();
+    } else {
+      if (response.statusCode == 200) {
+        final body = jsonDecode(response.body);
+        if (body["result"] != null &&
+            (body["result"] as Map<String, dynamic>)["place"] != null) {
+          final place = (body["result"] as Map<String, dynamic>)["place"];
+          if (place["list"] != null) {
+            final list = place["list"] as List;
 
-          placeList = list.map((e) => NaverPlaceModel.fromJson(e)).toList();
+            logger.d(
+                "[API LOG] place -> { url : $url, size : ${list.length}, data : ${list[0]} }");
+
+            placeList = list.map((e) => NaverPlaceModel.fromJson(e)).toList();
+          } else {
+            throw Exception('Failed to load list');
+          }
         } else {
-          throw Exception('Failed to load list');
+          throw Exception('Failed to load result');
         }
       } else {
-        throw Exception('Failed to load result');
+        throw Exception('Failed to load search');
       }
-    } else {
-      throw Exception('Failed to load search');
+
+      FileUtil.saveFromApiRes(placeList, query, location);
     }
 
     return placeList;

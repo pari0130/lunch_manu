@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:logger/logger.dart';
@@ -8,8 +7,6 @@ import 'package:lunch_manu/fonts/gmatket_font_family.dart';
 import 'package:lunch_manu/theme/color.dart';
 import 'package:lunch_manu/widgets/widgets.dart';
 import 'package:lunch_manu/fonts/fonts.dart';
-import 'package:lunch_manu/models/models.dart';
-import 'package:lunch_manu/api/apis.dart';
 import 'package:lunch_manu/utils/utils.dart';
 import 'package:lunch_manu/status/status.dart';
 import 'package:lunch_manu/widgets/custom_loading.dart';
@@ -31,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     getData();
-    CacheUtil.saveJsonFile();
+    //CacheUtil.saveJsonFile();
     super.initState();
   }
 
@@ -92,7 +89,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 25,),
             Container(
               margin: const EdgeInsets.only(left: 15, right: 15),
-              child: const Text("Tag 음식점은 어때요?", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: gmarketSansTTFMedium),),
+              child: const Text("태그 음식점은 어때요?", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: gmarketSansTTFMedium),),
             ),
             const SizedBox(height: 20,),
             Container(

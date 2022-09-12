@@ -10,14 +10,14 @@ class RandomPlaceStatus extends GetxController {
 
   /// 태그 변경 시 tag item 다시 받아오기
   updateItem() async {
-    randomItemList.value = CommonUtils.shuffleAndTake(size: 5, list: (await NaverPlaceApi().search(query: "음식점"))).cast<NaverPlaceModel>();
+    randomItemList.value = ListUtil.shuffleAndTake(size: 5, list: (await NaverPlaceApi().search(query: "음식점"))).cast<NaverPlaceModel>();
     loadingStatus.updateMainLoading(false);
     update();
   }
 
   @override
   void onInit() async {
-    updateItem();
+    //updateItem();
     super.onInit();
   }
 }

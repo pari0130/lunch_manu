@@ -56,7 +56,7 @@ class TagsItem extends StatelessWidget {
                   ),
                   Text(
                       data.microReview != null
-                          ? CommonUtils.getFirstFromList(
+                          ? ListUtil.getFirstFromList(
                               list: data.microReview!)
                           : "",
                       maxLines: 1,

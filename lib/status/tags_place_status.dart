@@ -18,14 +18,14 @@ class TagsPlaceStatus extends GetxController {
 
   /// 태그 변경 시 tag item 다시 받아오기
   updateTagItem(String tagName) async {
-    tagItemList.value = CommonUtils.shuffleAndTake(size: 5, list: (await NaverPlaceApi().search(query: tagName))).cast<NaverPlaceModel>();
+    tagItemList.value = ListUtil.shuffleAndTake(size: 5, list: (await NaverPlaceApi().search(query: tagName))).cast<NaverPlaceModel>();
     loadingStatus.updateTagLoading(false);
     update();
   }
 
   @override
   void onInit() async {
-    updateTagItem(selectedTag.value);
+    //updateTagItem(selectedTag.value);
     super.onInit();
   }
 }
