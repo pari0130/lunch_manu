@@ -29,6 +29,7 @@ class FileUtil {
     }
   }
 
+  /// file system 에 저장된 api result 조회
   static Future<List> readApiRes(String query, String latLong) async {
     var path = _parseFileNameFromLatLong(query, latLong);
     String? fileString = "";
@@ -60,6 +61,31 @@ class FileUtil {
     return [];
   }
 
+  /// like 목록 조회
+  static Future<List> readLikeList(String query, String latLong) async {
+    String? fileString = "";
+
+    if (kIsWeb) {
+      fileString = WebStorageUtil.readWebStorage(query, latLong);
+    } else {
+      // file 위치에 저장된 데이터가 없을 경우 catch error
+      try {
+        fileString = (await _readLikeFileAsString());
+      } catch(e) {
+        fileString = "";
+      }
+    }
+
+    logger.d("[FILE] readLikeList -> { isNotEmpty : ${fileString != null && fileString.isNotEmpty} }");
+
+    if (fileString != null && fileString.isNotEmpty) {
+      Map<String, dynamic> jsonMap = jsonDecode(fileString);
+      return jsonMap["data"]??[];
+    }
+
+    return [];
+  }
+
   /// map 구조 데이터 json 으로 저장 (file system)
   static void saveJsonFile(Object? data, String path) async {
     String jsonString = jsonEncode(data);
@@ -79,6 +105,12 @@ class FileUtil {
   /// file system read
   static Future<String> _readFileAsString(String path) async {
     final file = await _localFile(path);
+    return file.readAsString();
+  }
+
+  /// 좋아요 목록 file system 조회
+  static Future<String> _readLikeFileAsString() async {
+    final file = await _localFile('likes.json');
     return file.readAsString();
   }
 

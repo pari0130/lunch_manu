@@ -45,6 +45,7 @@ class RandomItem extends StatelessWidget {
               top: 0,
               right: 5,
               child: FavoriteBox(
+                data : data,
                 // isFavorited: data["is_favorited"],
                 isFavorited: true,
               )),

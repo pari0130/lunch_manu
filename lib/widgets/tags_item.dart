@@ -89,6 +89,7 @@ class TagsItem extends StatelessWidget {
                 //SizedBox(height: 10,),
                 // FavoriteBox(iconSize: 13, isFavorited: data["is_favorited"],)
                 FavoriteBox(
+                  data : data,
                   iconSize: 13,
                   isFavorited: true,
                 )

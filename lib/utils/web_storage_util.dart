@@ -11,6 +11,11 @@ class WebStorageUtil {
     return _readFileAsString(path: path);
   }
 
+  /// 웹 스토리지에 저장된 좋아요 목록 조회
+  static String? readWebStorageLikes() {
+    return _readFileAsString(path: 'likes.json');
+  }
+
   /// 웹 스토리지 json 형태 파일 저장
   static void saveJsonFile(Object? data, String path) {
     String jsonString = jsonEncode(data);

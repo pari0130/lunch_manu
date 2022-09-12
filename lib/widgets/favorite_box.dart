@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:lunch_manu/theme/color.dart';
+import 'package:lunch_manu/models/models.dart';
 
 class FavoriteBox extends StatelessWidget {
-  FavoriteBox({ Key? key, this.padding = 5, this.iconSize = 18, this.isFavorited = false, this.onTap}) : super(key: key);
+  FavoriteBox({ Key? key, this.padding = 5, this.iconSize = 18, this.isFavorited = false, this.onTap, required this.data}) : super(key: key);
   final double padding;
   final double iconSize;
   final bool isFavorited;
   final GestureTapCallback? onTap;
+  final logger = Logger();
+  final NaverPlaceModel data;
 
   @override
   Widget build(BuildContext context) {
     return 
       GestureDetector(
-        onTap: onTap,
+        onTap:  () {
+          logger.d(
+              "[LIKE BOX] FavoriteBox -> { selected : ${data.toJson()} }");
+        },
         child: Container(
           padding: EdgeInsets.all(padding),
           decoration: BoxDecoration(
