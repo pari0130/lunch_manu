@@ -4,6 +4,9 @@ import 'package:universal_html/html.dart';
 
 class WebStorageUtil {
   static final logger = Logger();
+  static const version = "v1";
+  static const postFix = "_$version.json";
+  static const likesPath = "likes_$postFix";
 
   /// 웹 스토리지 저장된 json String 조회
   static String? readWebStorage(String path) {
@@ -12,7 +15,7 @@ class WebStorageUtil {
 
   /// 웹 스토리지에 저장된 좋아요 목록 조회
   static String? readWebStorageLikes() {
-    return _readFileAsString(path: 'likes.json');
+    return _readFileAsString(path: likesPath);
   }
 
   /// 웹 스토리지 json 형태 파일 저장

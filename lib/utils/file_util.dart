@@ -8,6 +8,9 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 class FileUtil {
   static final logger = Logger();
+  static const version = "v1";
+  static const postFix = "_$version.json";
+  static const likesPath = "likes_$postFix";
 
   /// 위도/경도에 해당하는 json 파일 저장 (126.926;37.473;음식점.json)
   static void saveFromApiRes(List resList, String query, String latLong) async {
@@ -62,13 +65,46 @@ class FileUtil {
     return [];
   }
 
+  // if 맵에서 제외 => person.remove('key');
+  /// 좋아요 목록 저장
+  static void saveLikeData(Map<String, dynamic> data) async {
+
+    var savedLikeMapIterable = await readLikeMapIterable();
+    var saveMapData = {};
+
+    if (savedLikeMapIterable.isNotEmpty) {
+      var replaceData = {};
+      savedLikeMapIterable.forEach((key, value) {
+        if (key != data["id"]) {
+          replaceData.addAll({key: value});
+        }
+      });
+      saveMapData.addAll(replaceData);
+    }
+
+    saveMapData.addAll({data["id"]: data});
+
+    var toSave = {
+      "modDate": DateUtil.getNowEpoch(),
+      "data": saveMapData
+    };
+
+    logger.d("[FILE] saveLikeData -> { toSave : $toSave }");
+
+    // web 확인
+    if (kIsWeb) {
+      WebStorageUtil.saveJsonFile(toSave, likesPath);
+    } else {
+      saveJsonFile(toSave, likesPath);
+    }
+  }
+
   /// like 목록 조회
-  static Future<List> readLikeList(String query, String latLong) async {
+  static Future<Map<String, dynamic>> readLikeMapIterable() async {
     String? fileString = "";
-    var path = _parseFileNameFromLatLong(query, latLong);
 
     if (kIsWeb) {
-      fileString = WebStorageUtil.readWebStorage(path);
+      fileString = WebStorageUtil.readWebStorageLikes();
     } else {
       // file 위치에 저장된 데이터가 없을 경우 catch error
       try {
@@ -82,10 +118,10 @@ class FileUtil {
 
     if (fileString != null && fileString.isNotEmpty) {
       Map<String, dynamic> jsonMap = jsonDecode(fileString);
-      return jsonMap["data"]??[];
+      return jsonMap["data"]??{};
     }
 
-    return [];
+    return {};
   }
 
   /// map 구조 데이터 json 으로 저장 (file system)
@@ -112,7 +148,7 @@ class FileUtil {
 
   /// 좋아요 목록 file system 조회
   static Future<String> _readLikeFileAsString() async {
-    final file = await _localFile('likes.json');
+    final file = await _localFile(likesPath);
     return file.readAsString();
   }
 
@@ -130,9 +166,13 @@ class FileUtil {
   static String _parseFileNameFromLatLong(String query, String latLong) {
     var long = latLong.split(";")[0];
     var lat = latLong.split(";")[1];
+    // // 126.300 길이가 +5 할 수 없으므로 index 오류 남 해결필요
+    // var lastIndexLong = long.indexOf(".");
+    // var lastIndexLat = 0;
+
     long = num.parse(long.substring(0, long.indexOf(".") + 5)).toStringAsFixed(3);
     lat = num.parse(lat.substring(0, lat.indexOf(".") + 5)).toStringAsFixed(3);
-    return '$long;$lat;$query.json';
+    return '$long;$lat;$query$postFix';
   }
 
   /// 밀리초 기준으로 현재 일자가 지났는지 확인
