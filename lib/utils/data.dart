@@ -65,6 +65,10 @@ List categories = [
     "icon" : Icons.ramen_dining
   },
   {
+    "name" : "일식",
+    "icon" : FontAwesomeIcons.fish
+  },
+  {
     "name" : "분식",
     "icon" : FontAwesomeIcons.cookie
   },

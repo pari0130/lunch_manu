@@ -44,6 +44,7 @@ class CustomImage extends StatelessWidget {
         ],
       ),
       child: ClipRRect(
+        borderRadius: BorderRadius.circular(radius),
         child: (name.isNotEmpty)
             ? CachedNetworkImage(
                 imageUrl: name,

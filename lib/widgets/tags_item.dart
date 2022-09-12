@@ -79,8 +79,8 @@ class TagsItem extends StatelessWidget {
                           "${Location.getDistance(latLong, "${data.x};${data.y}").round()}m",
                           // "${double.parse(data.distance ?? "0.0").round()}m",
                           style: TextStyle(
-                              fontSize: 12,
-                              color: primary,
+                              fontSize: 11,
+                              color: blue,
                               fontFamily: gmarketSansTTFMedium)),
                     ],
                   )

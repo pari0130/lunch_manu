@@ -73,8 +73,8 @@ class RandomItem extends StatelessWidget {
                       Text(
                         "${Location.getDistance(latLong, "${data.x};${data.y}").round()}m",
                         style: const TextStyle(
-                            fontSize: 13,
-                            color: primary,
+                            fontSize: 12,
+                            color: blue,
                             fontWeight: FontWeight.w600,
                             fontFamily: gmarketSansTTFMedium),
                       ),
