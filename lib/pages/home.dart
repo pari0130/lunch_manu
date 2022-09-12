@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 10,),
             Container(
               margin: const EdgeInsets.only(left: 15, right: 15),
-              child: Obx(() => loadingStatus.isTagLoading.value ? const CustomLoading() : listTags()),
+              child: Obx(() => loadingStatus.isTagLoading.value ? const CustomLoading(left: 0) : listTags()),
               //child: listTags(),
             ),
             const SizedBox(height: 20,),
