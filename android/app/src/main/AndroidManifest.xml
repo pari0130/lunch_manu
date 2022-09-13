@@ -2,7 +2,10 @@
     package="com.dong.lunch_manu">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:label="lunch_manu"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
