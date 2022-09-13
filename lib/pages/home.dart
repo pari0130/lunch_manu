@@ -89,7 +89,8 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
-                  Text("무작위 음식점은 어때요?", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: gmarketSansTTFMedium),),
+                  // 랜덤 음식점, query=음식점, listRandom
+                  Text("이런 음식점은 어때요?", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: gmarketSansTTFMedium),),
                 ],
               ),
             ),
@@ -100,7 +101,8 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 25,),
             Container(
               margin: const EdgeInsets.only(left: 15, right: 15),
-              child: const Text("태그 음식점은 어때요?", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: gmarketSansTTFMedium),),
+              // 카테고리 태그 음식점, query=TAG, listTags
+              child: const Text("이런 카테고리는 어때요?", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: gmarketSansTTFMedium),),
             ),
             const SizedBox(height: 20,),
             Container(

@@ -1,22 +1,35 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:lunch_manu/fonts/fonts.dart';
 import 'package:lunch_manu/theme/color.dart';
 import 'package:lunch_manu/models/models.dart';
 import 'package:lunch_manu/assets/assets.dart';
+import 'package:lunch_manu/widgets/store_category_item.dart';
 import 'favorite_box.dart';
 import 'package:lunch_manu/utils/utils.dart';
 
 class RandomItem extends StatelessWidget {
-  RandomItem({Key? key, required this.data, required this.latLong}) : super(key: key);
+  RandomItem({Key? key, required this.data, required this.latLong }) : super(key: key);
   final NaverPlaceModel data;
   final String latLong;
+  final logger = Logger();
+  static List<String> storeCategoryItemList = [];
+
+  @override
+  void initState() {
+    if (data.category != null && data.category!.isNotEmpty) {
+      storeCategoryItemList.addAll(data.category!);
+    }
+    logger.d("check -> $storeCategoryItemList");
+    //this.storeCategoryItemList =
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 15),
-      height: 170, width: 220,
+      height: 180, width: 220,
       // color: secondary,
       child: Stack(
         children: [
@@ -61,12 +74,28 @@ class RandomItem extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                          child: Text(data.name ?? "",
-                              style: const TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: gmarketSansTTFMedium),
-                              maxLines: 1)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(data.name ?? "",
+                                  style: const TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: gmarketSansTTFMedium),
+                                  maxLines: 1),
+                              const SizedBox(
+                                height: 3,
+                              ),
+                              listStoreCategories(data.category??[]),
+                            ],
+                          ),
+                          // child: Text(data.name ?? "",
+                          //     style: const TextStyle(
+                          //         fontSize: 13,
+                          //         fontWeight: FontWeight.w600,
+                          //         fontFamily: gmarketSansTTFMedium),
+                          //     maxLines: 1)
+                      ),
                       const SizedBox(
                         width: 5,
                       ),
@@ -87,5 +116,17 @@ class RandomItem extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  listStoreCategories(List<String> categoryList){
+    List<Widget> lists = List.generate(categoryList.length, (index) => StoreCategoryItem(name: categoryList[index]));
+    return
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.only(bottom: 5, right: 10),
+        child: Row(
+            children: lists
+        ),
+      );
   }
 }

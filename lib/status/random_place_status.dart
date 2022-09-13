@@ -10,7 +10,11 @@ class RandomPlaceStatus extends GetxController {
 
   /// 태그 변경 시 tag item 다시 받아오기
   updateItem() async {
-    randomItemList.value = ListUtil.shuffleAndTake(size: 5, list: (await NaverPlaceApi().search(query: "음식점"))).cast<NaverPlaceModel>();
+    randomItemList.value = ListUtil.shuffleAndIgnoreCategory(
+        size: 5,
+        placeList: (await NaverPlaceApi().search(query: "음식점")),
+        ignoreList: ["카페", "술집", "맥주"]
+    ).cast<NaverPlaceModel>();
     loadingStatus.updateMainLoading(false);
     update();
   }
