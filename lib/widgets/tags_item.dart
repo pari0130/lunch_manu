@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lunch_manu/theme/color.dart';
+import 'package:lunch_manu/widgets/store_category_item.dart';
 import 'package:lunch_manu/widgets/widgets.dart';
 import 'package:lunch_manu/models/models.dart';
 import 'favorite_box.dart';
@@ -29,7 +30,7 @@ class TagsItem extends StatelessWidget {
               color: shadowColor.withOpacity(0.1),
               spreadRadius: 1,
               blurRadius: 1,
-              offset: Offset(0, 1), // changes position of shadow
+              offset: const Offset(0, 1), // changes position of shadow
             ),
           ],
         ),
@@ -38,11 +39,11 @@ class TagsItem extends StatelessWidget {
           children: [
             CustomImage(
               data.thumUrl ?? "",
-              width: 60,
-              height: 60,
+              width: 75,
+              height: 75,
               radius: 10,
             ),
-            SizedBox(width: 15),
+            const SizedBox(width: 15),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,35 +51,38 @@ class TagsItem extends StatelessWidget {
                   Text(data.name ?? "",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                           fontFamily: gmarketSansTTFMedium)),
-                  SizedBox(
+                  const SizedBox(
                     height: 3,
                   ),
-                  Text(
+                  (data.microReview != null && data.microReview!.isNotEmpty)
+                  ? Text(
                       data.microReview != null
                           ? ListUtil.getFirstFromList(list: data.microReview!)
                           : "",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 12,
                           color: Colors.grey,
-                          fontFamily: gmarketSansTTFMedium)),
-                  SizedBox(
-                    height: 4,
+                          fontFamily: gmarketSansTTFMedium))
+                  : const SizedBox(),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  listStoreCategories(data.category??[]),
+                  const SizedBox(
+                    height: 2,
                   ),
                   Row(
                     children: [
-                      //Icon(Icons.star_rounded, size: 14, color: primary,),
-                      //SizedBox(width: 2,),
-                      //Text(data["rate"] + " (" + data["rate_number"] + ")", style: TextStyle(fontSize: 12, color: primary)),
                       Text(
                           "${Location.getDistance(latLong, "${data.x};${data.y}").round()}m",
                           // "${double.parse(data.distance ?? "0.0").round()}m",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 11,
                               color: blue,
                               fontFamily: gmarketSansTTFMedium)),
@@ -89,9 +93,6 @@ class TagsItem extends StatelessWidget {
             ),
             Column(
               children: <Widget>[
-                //Text(data["price"],  maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: primary)),
-                //SizedBox(height: 10,),
-                // FavoriteBox(iconSize: 13, isFavorited: data["is_favorited"],)
                 FavoriteBox(
                   data: data,
                   iconSize: 13,
@@ -103,5 +104,17 @@ class TagsItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  listStoreCategories(List<String> categoryList){
+    List<Widget> lists = List.generate(categoryList.length, (index) => StoreCategoryItem(name: categoryList[index]));
+    return
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.only(bottom: 5, right: 10),
+        child: Row(
+            children: lists
+        ),
+      );
   }
 }
