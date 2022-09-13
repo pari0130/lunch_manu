@@ -58,18 +58,16 @@ class TagsItem extends StatelessWidget {
                   const SizedBox(
                     height: 3,
                   ),
-                  (data.microReview != null && data.microReview!.isNotEmpty)
-                  ? Text(
-                      data.microReview != null
+                  Text(
+                      (data.microReview != null && data.microReview!.isNotEmpty)
                           ? ListUtil.getFirstFromList(list: data.microReview!)
-                          : "",
+                          : "-",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                           fontSize: 12,
                           color: Colors.grey,
-                          fontFamily: gmarketSansTTFMedium))
-                  : const SizedBox(),
+                          fontFamily: gmarketSansTTFMedium)),
                   const SizedBox(
                     height: 2,
                   ),

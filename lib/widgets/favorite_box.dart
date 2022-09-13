@@ -24,7 +24,7 @@ class FavoriteBox extends StatelessWidget {
         },
         child: Container(
           padding: EdgeInsets.all(padding),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: primary,
             shape: BoxShape.circle
           ),
