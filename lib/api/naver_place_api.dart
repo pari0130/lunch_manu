@@ -16,10 +16,9 @@ class NaverPlaceApi {
     final location = locationStatus.currentLocation.value;
     // final location = "126.9304383;37.4806604";
     final queryParameters = "query=$query&searchCoord=$location";
-    final url = "${Urls.naverPlace}$queryParameters";
+    final url = "$naverPlace$queryParameters";
     final response = await http.get(Uri.parse(url));
     var placeList = <NaverPlaceModel>[];
-
     final cachedData = await FileUtil.readApiRes(query, location);
 
     if (cachedData.isNotEmpty) {
