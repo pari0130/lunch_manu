@@ -26,14 +26,14 @@ class NaverPlaceModel {
   ReservationLabel? reservationLabel;
   Reservation? reservation;
   bool? hasNPay;
-  Null? parkingPrice;
-  Null? card;
+  Map<String, dynamic>? parkingPrice;
+  Map<String, dynamic>? card;
   String? distance;
   String? marker;
   String? markerSelected;
   String? markerId;
   List<String>? microReview;
-  Null? michelinGuide;
+  Map<String, dynamic>? michelinGuide;
 
   NaverPlaceModel(
       {this.id,
