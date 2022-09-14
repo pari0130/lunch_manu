@@ -30,7 +30,7 @@ class RandomItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 15),
-      height: 180, width: 220,
+      height: 185, width: 220,
       // color: secondary,
       child: Stack(
         children: [
@@ -63,7 +63,7 @@ class RandomItem extends StatelessWidget {
               child: FavoriteBox(
                 data: data,
                 // isFavorited: data["is_favorited"],
-                isFavorited: true,
+                // isFavorited: true,
               )),
           Positioned(
             top: 140,
@@ -80,12 +80,12 @@ class RandomItem extends StatelessWidget {
                           children: [
                             Text(data.name ?? "",
                                 style: const TextStyle(
-                                    fontSize: 13,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w600,
                                     fontFamily: gmarketSansTTFMedium),
                                 maxLines: 1),
                             const SizedBox(
-                              height: 3,
+                              height: 5,
                             ),
                             Row(
                               children: [
@@ -95,7 +95,7 @@ class RandomItem extends StatelessWidget {
                                       listStoreCategories(data.category ?? []),
                                 ),
                                 const SizedBox(
-                                  width: 8,
+                                  width: 6,
                                 ),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -103,7 +103,7 @@ class RandomItem extends StatelessWidget {
                                     Text(
                                       "${Location.getDistance(latLong, "${data.x};${data.y}").round()}m",
                                       style: const TextStyle(
-                                          fontSize: 12,
+                                          fontSize: 11,
                                           color: blue,
                                           fontWeight: FontWeight.w600,
                                           fontFamily: gmarketSansTTFMedium),

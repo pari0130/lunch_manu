@@ -10,7 +10,7 @@ class FileUtil {
   static final logger = Logger();
   static const version = "v1";
   static const postFix = "_$version.json";
-  static const likesPath = "likes$postFix";
+  static const favoritePath = "favorite$postFix";
 
   /// 위도/경도에 해당하는 json 파일 저장 (126.926;37.473;음식점.json)
   static void saveFromApiRes(List resList, String query, String latLong) async {
@@ -67,14 +67,14 @@ class FileUtil {
 
   // if 맵에서 제외 => person.remove('key');
   /// 좋아요 목록 저장
-  static void saveLikeData(Map<String, dynamic> data) async {
+  static void saveFavoriteData(Map<String, dynamic> data) async {
 
-    var savedLikeMapIterable = await readLikeMapIterable();
+    var savedFavoriteMapIterable = await readFavoriteMapIterable();
     var saveMapData = {};
 
-    if (savedLikeMapIterable.isNotEmpty) {
+    if (savedFavoriteMapIterable.isNotEmpty) {
       var replaceData = {};
-      savedLikeMapIterable.forEach((key, value) {
+      savedFavoriteMapIterable.forEach((key, value) {
         if (key != data["id"]) {
           replaceData.addAll({key: value});
         }
@@ -89,32 +89,32 @@ class FileUtil {
       "data": saveMapData
     };
 
-    logger.d("[FILE] saveLikeData -> { toSave : $toSave }");
+    logger.d("[FILE] saveFavoriteData -> { toSave : $toSave }");
 
     // web 확인
     if (kIsWeb) {
-      WebStorageUtil.saveJsonFile(toSave, likesPath);
+      WebStorageUtil.saveJsonFile(toSave, favoritePath);
     } else {
-      saveJsonFile(toSave, likesPath);
+      saveJsonFile(toSave, favoritePath);
     }
   }
 
-  /// like 목록 조회
-  static Future<Map<String, dynamic>> readLikeMapIterable() async {
+  /// Favorite 목록 조회
+  static Future<Map<String, dynamic>> readFavoriteMapIterable() async {
     String? fileString = "";
 
     if (kIsWeb) {
-      fileString = WebStorageUtil.readWebStorageLikes();
+      fileString = WebStorageUtil.readWebStorageFavorite();
     } else {
       // file 위치에 저장된 데이터가 없을 경우 catch error
       try {
-        fileString = (await _readLikeFileAsString());
+        fileString = (await _readFavoriteFileAsString());
       } catch(e) {
         fileString = "";
       }
     }
 
-    logger.d("[FILE] readLikeList -> { isNotEmpty : ${fileString != null && fileString.isNotEmpty} }");
+    logger.d("[FILE] readFavoriteList -> { isNotEmpty : ${fileString != null && fileString.isNotEmpty} }");
 
     if (fileString != null && fileString.isNotEmpty) {
       Map<String, dynamic> jsonMap = jsonDecode(fileString);
@@ -147,8 +147,8 @@ class FileUtil {
   }
 
   /// 좋아요 목록 file system 조회
-  static Future<String> _readLikeFileAsString() async {
-    final file = await _localFile(likesPath);
+  static Future<String> _readFavoriteFileAsString() async {
+    final file = await _localFile(favoritePath);
     return file.readAsString();
   }
 

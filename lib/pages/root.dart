@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lunch_manu/theme/color.dart';
 import 'package:lunch_manu/widgets/widgets.dart';
 import 'home.dart';
-import 'like.dart';
+import 'favorite.dart';
 
 class RootApp extends StatefulWidget {
   const RootApp({ Key? key }) : super(key: key);
@@ -18,7 +18,7 @@ class _RootAppState extends State<RootApp> {
     Icons.home_rounded, Icons.favorite
   ];
   List<Widget> pages = [
-    const HomePage(), const LikePage(),
+    const HomePage(), const FavoritePage(),
   ];
 
   @override

@@ -2,17 +2,16 @@
 import 'package:flutter/material.dart';
 import 'package:lunch_manu/fonts/gmatket_font_family.dart';
 import 'package:lunch_manu/theme/color.dart';
-import 'package:lunch_manu/utils/data.dart';
 import 'package:lunch_manu/widgets/widgets.dart';
 
-class LikePage extends StatefulWidget {
-  const LikePage({ Key? key }) : super(key: key);
+class FavoritePage extends StatefulWidget {
+  const FavoritePage({ Key? key }) : super(key: key);
 
   @override
   _LikePageState createState() => _LikePageState();
 }
 
-class _LikePageState extends State<LikePage> {
+class _LikePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     return 

@@ -22,7 +22,7 @@ class BottomBarItem extends StatelessWidget {
           isNotified ?
           Stack(
             children: <Widget>[
-              Icon(icon, size: 26, color: isActive ? activeColor : color,),
+              Icon(icon, size: 30, color: isActive ? activeColor : color,),
               const Positioned(
                 top: 5.0,
                 right: 0,
@@ -42,7 +42,7 @@ class BottomBarItem extends StatelessWidget {
               shape: BoxShape.circle,
               color: isActive ? Colors.white.withOpacity(.15) : Colors.transparent,
             ),
-            child: Icon(icon, size: 26, color: isActive ? activeColor : color),
+            child: Icon(icon, size: 30, color: isActive ? activeColor : color),
           )
         ],
       ),

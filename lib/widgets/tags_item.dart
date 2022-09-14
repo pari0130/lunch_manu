@@ -21,7 +21,7 @@ class TagsItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         margin: EdgeInsets.only(bottom: 10),
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(7),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -39,8 +39,8 @@ class TagsItem extends StatelessWidget {
           children: [
             CustomImage(
               data.thumUrl ?? "",
-              width: 75,
-              height: 75,
+              width: 77,
+              height: 77,
               radius: 10,
             ),
             const SizedBox(width: 15),
@@ -56,7 +56,7 @@ class TagsItem extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           fontFamily: gmarketSansTTFMedium)),
                   const SizedBox(
-                    height: 3,
+                    height: 4,
                   ),
                   Text(
                       (data.microReview != null && data.microReview!.isNotEmpty)
@@ -69,11 +69,11 @@ class TagsItem extends StatelessWidget {
                           color: Colors.grey,
                           fontFamily: gmarketSansTTFMedium)),
                   const SizedBox(
-                    height: 2,
+                    height: 3,
                   ),
                   listStoreCategories(data.category??[]),
                   const SizedBox(
-                    height: 2,
+                    height: 3,
                   ),
                   Row(
                     children: [
@@ -94,7 +94,7 @@ class TagsItem extends StatelessWidget {
                 FavoriteBox(
                   data: data,
                   iconSize: 13,
-                  isFavorited: true,
+                  //isFavorited: true,
                 )
               ],
             ),

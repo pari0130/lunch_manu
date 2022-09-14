@@ -18,25 +18,53 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  // late List<NaverPlaceModel> randomItemList = [];
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
+// late List<NaverPlaceModel> randomItemList = [];
   final logger = Logger();
   final LoadingStatus loadingStatus = Get.put(LoadingStatus());
   final TagsPlaceStatus tagsStatus = Get.put(TagsPlaceStatus());
   final RandomPlaceStatus randomStatus = Get.put(RandomPlaceStatus());
   final LocationStatus locationStatus = Get.put(LocationStatus());
+  final FavoriteStoreStatus favoriteStoreStatus = Get.put(FavoriteStoreStatus());
+
+  Future getData() async {
+    loadingStatus.updateTagLoading(true);
+    loadingStatus.updateMainLoading(true);
+    await locationStatus.updateLocation(null);
+    await randomStatus.updateItem();
+    await tagsStatus.updateTag(tagsStatus.selectedTag.value);
+  }
 
   @override
   void initState() {
     getData();
-    //CacheUtil.saveJsonFile();
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
-  Future getData() async {
-    await locationStatus.updateLocation(null);
-    await randomStatus.updateItem();
-    await tagsStatus.updateTag(tagsStatus.selectedTag.value);
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        getData();
+        logger.d("[LIFE CYCLE] resumed");
+        break;
+      case AppLifecycleState.inactive:
+        logger.d("[LIFE CYCLE] inactive");
+        break;
+      case AppLifecycleState.paused:
+        logger.d("[LIFE CYCLE] paused");
+        break;
+      case AppLifecycleState.detached:
+        logger.d("[LIFE CYCLE] detached");
+        break;
+    }
   }
 
   @override

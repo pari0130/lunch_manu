@@ -34,6 +34,7 @@ class NaverPlaceModel {
   String? markerId;
   List<String>? microReview;
   Map<String, dynamic>? michelinGuide;
+  bool? isFavorited = false;
 
   NaverPlaceModel(
       {this.id,

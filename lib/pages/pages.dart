@@ -1,3 +1,3 @@
 export 'home.dart';
-export 'like.dart';
+export 'favorite.dart';
 export 'root.dart';

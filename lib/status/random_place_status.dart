@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:lunch_manu/utils/utils.dart';
 import 'package:lunch_manu/api/apis.dart';
-import 'package:lunch_manu/models/models.dart';
 import 'loading_status.dart';
 
 class RandomPlaceStatus extends GetxController {
@@ -14,7 +13,7 @@ class RandomPlaceStatus extends GetxController {
         size: 5,
         placeList: (await NaverPlaceApi().search(query: "음식점")),
         ignoreList: ["카페", "술집", "맥주"]
-    ).cast<NaverPlaceModel>();
+    );
     loadingStatus.updateMainLoading(false);
     update();
   }
